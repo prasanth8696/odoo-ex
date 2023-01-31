@@ -1,8 +1,8 @@
 <odoo>
 
-	<record id="estate_property_tree_seven"  model="ir.ui.view">
-		<field name="name">estate.property.seven.tree</field>
-		<field name="model">estate.property.seven</field>
+	<record id="estate_property_tree_eight"  model="ir.ui.view">
+		<field name="name">estate.property.eight.tree</field>
+		<field name="model">estate.property.eight</field>
 		<field name="arch"  type="xml"> 
 			<tree string="properties">
 	 			<field name="name"/>
@@ -16,9 +16,9 @@
 	</record>
 	
 	
-    <record id="estate_property_form_seven" model="ir.ui.view">
-        <field name="name">estate.property.seven.form</field>
-        <field name="model">estate.property.seven</field>
+    <record id="estate_property_form_eight" model="ir.ui.view">
+        <field name="name">estate.property.eight.form</field>
+        <field name="model">estate.property.eight</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
         	<form string="properties">
@@ -28,9 +28,14 @@
                             <field name="name" class="mb16"/>
                         </h1>
     				</div>
+    				<div>
+    					 <field name="tag_ids" widget="many2many_tags"/>
+    				</div>
+    				
         			<group>
             			<group>
-                			<field name="post_code"/>
+            				<field name="property_type_id"/>
+            				<field name="post_code"/>
                 			<field name="date_availability"/>
             			</group>
             			<group>
@@ -50,6 +55,36 @@
                     		<field name="garden_orientation"/>
                     	</group>
                 		</page>
+                		<page string="offers">
+                			<group>
+                				<field name="offer_ids" >
+                					<tree>
+                						<field name="price" />
+                						<field name="partner_id"/>
+                						<field name="status" />
+                					</tree>
+                					<form>
+                						<div>
+    					 					<h1 class="mb32">
+                            					<field name="partner_id" class="mb16"/>
+                        					</h1>
+    									</div>
+                						<group>
+                							<field name="price" />
+                							<field name="status" />
+                						</group>
+                					</form>
+                				
+                				</field>
+                			</group>
+                		</page>
+                		<page string="other Info">
+                			<group>
+                				<field name="sales_person" />
+                				<field name="buyer" />
+                			</group>
+                		
+                		</page>
             		</notebook>
         		</group>
     		</sheet>
@@ -58,9 +93,9 @@
 		</record>
 		
 		
-		<record id="estate_property_search_seven" model="ir.ui.view">
-			<field name="name">estate.property.seven.search</field>
-			<field name="model">estate.property.seven</field>
+		<record id="estate_property_search_eight" model="ir.ui.view">
+			<field name="name">estate.property.eight.search</field>
+			<field name="model">estate.property.eight</field>
 			<field name="type">search</field>
 			<field name="arch" type="xml">
 				<search>
@@ -81,11 +116,11 @@
 	
 
 	 
-	<record id="estate_property_seven_action"  model="ir.actions.act_window">
+	<record id="estate_property_eight_action"  model="ir.actions.act_window">
 		<field name="name">properties</field>
-		<field name="res_model">estate.property.seven</field>
+		<field name="res_model">estate.property.eight</field>
 		<field name="view_mode">tree,form</field>
- 		<field name="view_id" ref="estate_property_tree_seven"/>		
+ 		<field name="view_id" ref="estate_property_tree_eight"/>		
 	</record>
 
 
