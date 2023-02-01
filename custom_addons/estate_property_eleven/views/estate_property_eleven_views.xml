@@ -1,0 +1,152 @@
+<odoo>
+
+	<record id="estate_property_tree_eleven"  model="ir.ui.view">
+		<field name="name">estate.property.eleven.tree</field>
+		<field name="model">estate.property.eleven</field>
+		<field name="arch"  type="xml"> 
+			<tree string="properties">
+	 			<field name="name"/>
+	 			<field name= "post_code"/>
+	 			<field name="bedrooms"/>	
+	 			<field name="living_area"/>	
+	 			<field name="selling_price"/>
+	 			<field name="date_availability"/>	
+	 		</tree>
+	 	</field>
+	</record>
+	
+	
+    <record id="estate_property_form_eleven" model="ir.ui.view">
+        <field name="name">estate.property.eleven.form</field>
+        <field name="model">estate.property.eleven</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+        	<form string="properties">
+        	<header>
+        		<button name="sold_property" string="sold" type="object" />
+        		<button name="cancel_property" string="cancel" type="object" />
+        		
+        	</header>
+    			<sheet>
+    				<div>
+    					 <h1 class="mb32">
+                            <field name="name" class="mb16"/>
+                        </h1>
+    				</div>
+    				<div>
+    					 <field name="tag_ids" widget="many2many_tags"/>
+    				</div>
+    				
+        			<group>
+            			<group>
+            				<field name="status" />
+            				<field name="property_type_id"/>
+            				<field name="post_code"/>
+                			<field name="date_availability"/>
+            			</group>
+            			<group>
+                			<field name="expected_price"/>
+                			<field name="best_offer" /> 
+                			<field name="selling_price"/>
+            			</group>
+            		<notebook>
+                		<page string="Description">
+                		<group>
+                			<field name="description"/>
+                    		<field name="bedrooms"/>
+                    		<field name="living_area"/>
+                    		<field name="facades"/>
+                    		<field name="garage"/>
+                    		<field name="garden"/>
+                    		<field name="garden_area"/>
+                    		<field name="garden_orientation"/>
+                    		<field name="total_area" />
+                    	</group>
+                		</page>
+                		<page string="offers">
+                			<group>
+                				<field name="offer_ids" >
+                					<tree>
+                						<field name="price" />
+                						<field name="partner_id"/>
+                						<field name="validity" />
+                						<field name="dead_line" />
+                						<button name="accept_offer" type="object" string="confirm" icon="fa-check" />
+                						<button name="refuse_offer" type="object" string="cancel"  icon="fa-times"/>
+                						
+                						<field name="status" />
+                					</tree>
+                					<form>
+                					    <sheet>
+                						<div>
+    					 					<h1 class="mb32">
+                            					<field name="partner_id" class="mb16"/>
+                        					</h1>
+    									</div>
+                						<group>
+                							<field name="price" />
+                							<field name="status" />
+                						</group>
+                						<group>
+                							<field name="validity" />
+                							<field name="dead_line" />
+                						</group>
+                						</sheet>
+                					</form>
+                				
+                				</field>
+                			</group>
+                		</page>
+                		<page string="other Info">
+                			<group>
+                				<field name="sales_person" />
+                				<field name="buyer" />
+                			</group>
+                		
+                		</page>
+            		</notebook>
+        		</group>
+    		</sheet>
+		</form>
+		</field>
+		</record>
+		
+		
+		<record id="estate_property_search_eleven" model="ir.ui.view">
+			<field name="name">estate.property.eleven.search</field>
+			<field name="model">estate.property.eleven</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name"/>
+					<field name="post_code"/>
+					<field name="expected_price"/>
+					<field name="bedrooms"/>
+					<field name="living_area"/>
+					<field name="facades"/>
+					<filter string="available" name="available" domain="['|',['status','=','new'],['status','=','offer received']]" />
+					<filter string="sold" name="sold property" domain="[('status', '=', 'sold')]"/>
+					<filter string="offer received" name="offer received" domain="[('status', '=', 'offer received')]"/>
+					<filter string="offer accepted" name="offer accepted" domain="[('status', '=', 'offer accepted')]"/>
+					
+					<group string="Group By" expand="0">
+						<filter string="postcode" name="postcode" context="{'group_by' : 'post_code'}"/>
+						<filter string="status" name="status" context="{'group_by' : 'status'}"/>
+					</group>
+				
+				</search>
+			</field>
+		</record>        	
+	
+
+	 
+	<record id="estate_property_eleven_action"  model="ir.actions.act_window">
+		<field name="name">properties</field>
+		<field name="res_model">estate.property.eleven</field>
+		<field name="view_mode">tree,form</field>
+ 		<field name="view_id" ref="estate_property_tree_eleven"/>		
+	</record>
+
+
+</odoo>
+

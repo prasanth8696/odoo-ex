@@ -1,0 +1,76 @@
+<odoo>
+
+
+
+	<record id="estate_property_type_form_eleven" model="ir.ui.view">
+		<field name="name">estate.property.type.eleven.form</field>
+		<field name="model">estate.property.type.eleven</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="properties">
+				<sheet>
+						<div>
+							 <h1 class="mb32">
+                        	    <field name="name" class="mb16"/>
+                        	 </h1>						
+						</div>
+				</sheet>
+			</form>
+		
+		</field>
+	</record>
+	
+	
+	<record id="estate_property_type_eleven_search" model="ir.ui.view">
+		<field name="name">estate.property.type.eleven.search</field>
+		<field name="model">estate.property.type.eleven</field>
+		<field name="type" >search</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />
+			</search>
+		</field>
+	
+	</record>
+
+
+
+
+
+
+
+
+	<record id="estate_property_type_eleven_action" model= "ir.actions.act_window">
+		<field name="name" >Settings</field>
+		<field name="res_model">estate.property.type.eleven</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</odoo>
