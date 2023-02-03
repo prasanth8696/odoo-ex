@@ -8,7 +8,6 @@ class EstatePropertyOfferTen(models.Model):
     _description = "offer model for chapter ten"
 
     price = fields.Float(string="price")
-    create_date = fields.Date(default=date.today())
     validity = fields.Integer(string="Validity(days)", default=7)
     dead_line = fields.Date(
         string="Dead Line",
@@ -25,19 +24,19 @@ class EstatePropertyOfferTen(models.Model):
         "estate.property.ten", string="Property", required=True
     )
 
-    @api.depends("validity")
+    @api.depends("validity") 
     def _compute_validity_date(self):
+        
+        for record in self :
+            record.dead_line = record.create_date.date() + timedelta(days = record.validity)
+            
+           
+    def _inverse_validity_date(self) :
+        for record in self :
+                record.validity = (record.dead_line - record.create_date.date()).days #inverse the filed's dependancies... 
+            
 
-        for record in self:
-            record.dead_line = record.create_date + timedelta(days=record.validity)
-
-    @api.depends("dead_line")
-    def _inverse_validity_date(self):
-        for record in self:
-            if record.dead_line:
-                record.validity = (
-                    record.dead_line - record.create_date
-                ).days  # inverse the filed's dependancies...
+            
 
     def accept_offer(self):
         property = self.property_id

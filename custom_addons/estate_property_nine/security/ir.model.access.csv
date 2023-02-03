@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_estate_nine,access.estateProperty,model_estate_property_nine,base.group_user,1,0,1,1
-access_estate_type_nine,access.estateTypes,model_estate_property_type_nine,base.group_user,1,0,1,1
-access_estate_tag_nine,access.estateTags,model_estate_property_tag_nine,base.group_user,1,0,1,1
-access_estate_offer_nine,access.estateOffer,model_estate_property_offer_nine,base.group_user,1,0,1,1
+access_estate_nine,access.estateProperty,model_estate_property_nine,base.group_user,1,1,1,1
+access_estate_type_nine,access.estateTypes,model_estate_property_type_nine,base.group_user,1,1,1,1
+access_estate_tag_nine,access.estateTags,model_estate_property_tag_nine,base.group_user,1,1,1,1
+access_estate_offer_nine,access.estateOffer,model_estate_property_offer_nine,base.group_user,1,1,1,1

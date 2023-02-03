@@ -3,11 +3,12 @@ from odoo import api, models, fields, _
 from odoo.exceptions import UserError
 
 
-class EstatePropertyOfferEleven(models.Model):
-    _name = "estate.property.offer.eleven"
-    _description = "offer model for chapter eleven"
+class EstatePropertyOfferTwelve(models.Model):
+    _name = "estate.property.offer.twelve"
+    _description = "offer model for chapter twelve"
 
     price = fields.Float(string="price")
+    creation_date = fields.Date(default = date.today())
     validity = fields.Integer(string="Validity(days)", default=7)
     dead_line = fields.Date(
         string="Dead Line",
@@ -21,29 +22,29 @@ class EstatePropertyOfferEleven(models.Model):
     )
     partner_id = fields.Many2one("res.partner", string="Partner", required=True)
     property_id = fields.Many2one(
-        "estate.property.eleven", string="Property", required=True
+        "estate.property.twelve", string="Property", required=True
     )
+    property_type_id = fields.Many2one("property_id.property_type_id" ,string = "property type")
     
     _sql_constraints = [
         ("positive_price","CHECK(price > 0.0)","Offer Price must be positive"),
         ("positive_validity","CHECK(validity >= 0)","Validity must be positive")
 
                 ]
-
+    _order = "price DESC" #for show highest prices on top
+    
     @api.depends("validity") 
     def _compute_validity_date(self):
-        
-        for record in self :
-            record.dead_line = record.create_date.date() + timedelta(days = record.validity)
+            for record in self :
+                record.dead_line = record.creation_date + timedelta(days = record.validity)
+             
             
-           
-    def _inverse_validity_date(self) :
+    def _inverse_validity_date(self) :        
         for record in self :
-                record.validity = (record.dead_line - record.create_date.date()).days #inverse the filed's dependancies... 
-            
+                 record.validity = (record.dead_line - record.creation_date).days #inverse the fieled's dependancies... 
+             
 
             
-
     def accept_offer(self):
         property = self.property_id
 

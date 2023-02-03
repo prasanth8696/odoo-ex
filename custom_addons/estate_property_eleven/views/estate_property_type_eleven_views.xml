@@ -41,7 +41,7 @@
 
 
 	<record id="estate_property_type_eleven_action" model= "ir.actions.act_window">
-		<field name="name" >Settings</field>
+		<field name="name" >Property Types</field>
 		<field name="res_model">estate.property.type.eleven</field>
 		<field name="view_mode">tree,form</field>
 	</record>
