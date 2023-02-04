@@ -23,8 +23,9 @@ class EstatePropertyTypeThirteen(models.Model):
     @api.depends("offer_ids")
     def _compute_offer_count(self):
   
-        self.offer_count = self.env['estate.property.offer.thirteen'].search_count(
-                [('property_type_id', '=', self.id)])
+        offers = self.env['estate.property.offer.thirteen'].browse(self.id)
+        print(offers)
+    
         
     def show_offers(self):
         return {

@@ -19,7 +19,8 @@
 				<field name="expected_price" />
 				<field name="selling_price" decoration-bf="1" />
 				<field name="date_availability" optional="hide" />
-				<field name="status" invisible="1" />
+				<field name="status" decoration-success="status == 'offer accepted'" decoration-info="status == 'new' or status == 'offer received'" decoration-danger="status == 'canceled" widget="badge" optional="hide"/>
+
 			</tree>
 		</field>
 	</record>
@@ -125,8 +126,8 @@
 							</page>
 							<page string="other Info">
 								<group>
-									<field name="sales_person" />
-									<field name="buyer" />
+									<field name="sales_person" readonly="1"/>
+									<field name="buyer"  readonly="1"/>
 								</group>
 
 							</page>
@@ -184,7 +185,7 @@
 		</field>
 	</record>
 
-	<record id="view_users_form_inherit" model="ir.ui.view">
+	<record id="user_inherit_view_thirteen" model="ir.ui.view">
 
 		<field name="name">res.users.form.inherit</field>
 		<field name="model">res.users</field>
@@ -192,13 +193,13 @@
 		<field name="inherit_id" ref="base.view_users_form" />
 		<field name="arch" type="xml">
 			<notebook position="inside">
-				<page string="Real Estate Properties" >
-				<group>
-					<field name="property_ids" readonly="1"/>
-					
-				</group>
+				<page string="Real Estate Properties">
+					<group>
+						<field name="property_ids" readonly="1" />
+
+					</group>
 				</page>
-			
+
 			</notebook>
 		</field>
 	</record>

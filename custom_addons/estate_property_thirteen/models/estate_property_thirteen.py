@@ -145,4 +145,18 @@ class EstatePropertyThirteen(models.Model):
             if not (rec.status in ('new','canceled')) :
                raise UserError(_("only new and cancel properties can be deleted"))
            
-  
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
