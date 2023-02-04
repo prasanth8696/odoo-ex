@@ -12,6 +12,7 @@
               'views/estate_property_type_twelve_views.xml',
               'views/estate_property_twelve_menu.xml',
               'security/ir.model.access.csv',
+              'views/estate_property_offer_twelve_views.xml'
               ]
     
     }

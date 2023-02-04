@@ -1,0 +1,33 @@
+<odoo>
+	<record id="offer_id_thirteen_tree" model="ir.ui.view">
+		<field name="name">estate.property.offer.thirteen.tree</field>
+		<field name="model">estate.property.offer.thirteen</field>
+		<field name="arch" type="xml" >
+
+
+			<tree editable="bottom">
+				<field name="price" />
+				<field name="partner_id" />
+				<field name="validity" />
+				<field name="dead_line" />
+				<button name="accept_offer" type="object" string="confirm"
+					icon="fa-check"
+					attrs="{'invisible' : ['|',('status' , '=',  'accepted'),('status' , '=',  'refused')]}" />
+				<button name="refuse_offer" type="object" string="cancel"
+					icon="fa-times"
+					attrs="{'invisible' : ['|',('status' , '=',  'accepted'),('status' , '=',  'refused')]}" />
+
+				<field name="status" invisible="1" />
+			</tree>
+		</field>
+
+
+	</record>
+
+
+
+
+
+
+
+</odoo>

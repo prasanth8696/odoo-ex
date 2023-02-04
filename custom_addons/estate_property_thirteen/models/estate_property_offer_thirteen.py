@@ -3,9 +3,9 @@ from odoo import api, models, fields, _
 from odoo.exceptions import UserError
 
 
-class EstatePropertyOfferTwelve(models.Model):
-    _name = "estate.property.offer.twelve"
-    _description = "offer model for chapter twelve"
+class EstatePropertyOfferThirteen(models.Model):
+    _name = "estate.property.offer.thirteen"
+    _description = "offer model for chapter thirteen"
 
     price = fields.Float(string="price")
     creation_date = fields.Date(default = date.today())
@@ -22,9 +22,8 @@ class EstatePropertyOfferTwelve(models.Model):
     )
     partner_id = fields.Many2one("res.partner", string="Partner", required=True)
     property_id = fields.Many2one(
-        "estate.property.twelve", string="Property", required=True
-    )
-    property_type_id = fields.Many2one("estate.property.type.twelve",string = "property type")
+        "estate.property.thirteen", string="Property")
+    property_type_id = fields.Many2one("estate.property.type.thirteen",string = "property type")
     
     _sql_constraints = [
         ("positive_price","CHECK(price > 0.0)","Offer Price must be positive"),
@@ -80,3 +79,18 @@ class EstatePropertyOfferTwelve(models.Model):
         # case 1: offer not yet accepted(here you can use one else condition for both cases)
         else:
             self.status = "refused"
+            
+        
+      
+    @api.model
+    def create(self,vals):
+        property = self.env["estate.property.thirteen"].browse(vals['property_id'])
+        prices = property.offer_ids.mapped('price')
+      
+        if prices :
+            max_price = max(prices)
+            if vals['price'] <= max_price :
+                raise UserError(_(f"offer must be higher than {max_price}"))
+        
+        return super(EstatePropertyOfferThirteen,self).create(vals)
+        

@@ -1,10 +1,10 @@
 <odoo>
 
-	<record id="estate_property_tree_twelve" model="ir.ui.view">
-		<field name="name">estate.property.twelve.tree</field>
-		<field name="model">estate.property.twelve</field>
+	<record id="estate_property_tree_thirteen" model="ir.ui.view">
+		<field name="name">estate.property.thirteen.tree</field>
+		<field name="model">estate.property.thirteen</field>
 		<field name="arch" type="xml">
-			<tree 
+			<tree
 				decoration-success="status in ('offer accepted','offer received')"
 				decoration-bf="status=='offer accepted'"
 				decoration-muted="status=='sold'"
@@ -12,7 +12,8 @@
 				<field name="name" />
 				<field name='property_type_id' />
 				<field name="post_code" />
-				<field name="tag_ids" widget="many2many_tags" options="{'color_field' : 'color' }"/>
+				<field name="tag_ids" widget="many2many_tags"
+					options="{'color_field' : 'color' }" />
 				<field name="bedrooms" />
 				<field name="living_area" />
 				<field name="expected_price" />
@@ -24,9 +25,9 @@
 	</record>
 
 
-	<record id="estate_property_form_twelve" model="ir.ui.view">
-		<field name="name">estate.property.twelve.form</field>
-		<field name="model">estate.property.twelve</field>
+	<record id="estate_property_form_thirteen" model="ir.ui.view">
+		<field name="name">estate.property.thirteen.form</field>
+		<field name="model">estate.property.thirteen</field>
 		<field name="type">form</field>
 		<field name="arch" type="xml">
 			<form string="properties">
@@ -77,14 +78,14 @@
 									<field name="garden_orientation"
 										attrs="{'invisible' : [('garden', '=' , False)]}" />
 									<field name="total_area" />
-									
+
 								</group>
 							</page>
 							<page string="offers">
 								<group>
 									<field name="offer_ids"
 										attrs="{'readonly' : ['|','|',('status','=','offer accepted'),('status', '=', 'sold'),('status', '=',  'canceled')]}">
-										<tree editable="bottom" id="offer_id_twelve"
+										<tree editable="bottom" id="offer_id_thirteen"
 											decoration-success="status=='accepted'"
 											decoration-danger="status=='refused'">
 											<field name="price" />
@@ -124,8 +125,8 @@
 							</page>
 							<page string="other Info">
 								<group>
-									<field name="sales_person" readonly="1" />
-									<field name="buyer" readonly="1" />
+									<field name="sales_person" />
+									<field name="buyer" />
 								</group>
 
 							</page>
@@ -137,9 +138,9 @@
 	</record>
 
 
-	<record id="estate_property_search_twelve" model="ir.ui.view">
-		<field name="name">estate.property.twelve.search</field>
-		<field name="model">estate.property.twelve</field>
+	<record id="estate_property_search_thirteen" model="ir.ui.view">
+		<field name="name">estate.property.thirteen.search</field>
+		<field name="model">estate.property.thirteen</field>
 		<field name="type">search</field>
 		<field name="arch" type="xml">
 			<search>
@@ -172,14 +173,34 @@
 
 
 
-	<record id="estate_property_twelve_action"
+	<record id="estate_property_thirteen_action"
 		model="ir.actions.act_window">
 		<field name="name">properties</field>
-		<field name="res_model">estate.property.twelve</field>
+		<field name="res_model">estate.property.thirteen</field>
 		<field name="view_mode">tree,form</field>
-		<field name="view_id" ref="estate_property_tree_twelve" />
+		<field name="view_id" ref="estate_property_tree_thirteen" />
 		<field name="context"> {'search_default_available': True,
-			'search_default_current': True}</field>
+			'search_default_current': True}
+		</field>
+	</record>
+
+	<record id="view_users_form_inherit" model="ir.ui.view">
+
+		<field name="name">res.users.form.inherit</field>
+		<field name="model">res.users</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="base.view_users_form" />
+		<field name="arch" type="xml">
+			<notebook position="inside">
+				<page string="Real Estate Properties" >
+				<group>
+					<field name="property_ids" readonly="1"/>
+					
+				</group>
+				</page>
+			
+			</notebook>
+		</field>
 	</record>
 
 

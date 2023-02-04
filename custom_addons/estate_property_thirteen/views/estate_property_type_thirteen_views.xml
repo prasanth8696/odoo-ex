@@ -2,9 +2,9 @@
 
 
 
-	<record id="estate_property_type_form_twelve" model="ir.ui.view">
-		<field name="name">estate.property.type.twelve.form</field>
-		<field name="model">estate.property.type.twelve</field>
+	<record id="estate_property_type_form_thirteen" model="ir.ui.view">
+		<field name="name">estate.property.type.thirteen.form</field>
+		<field name="model">estate.property.type.thirteen</field>
 		<field name="type">form</field>
 		<field name="arch" type="xml">
 			<form string="properties">
@@ -45,10 +45,10 @@
 	</record>
 
 
-	<record id="estate_property_type_twelve_search"
+	<record id="estate_property_type_thirteen_search"
 		model="ir.ui.view">
-		<field name="name">estate.property.type.twelve.search</field>
-		<field name="model">estate.property.type.twelve</field>
+		<field name="name">estate.property.type.thirteen.search</field>
+		<field name="model">estate.property.type.thirteen</field>
 		<field name="type">search</field>
 		<field name="arch" type="xml">
 			<search>
@@ -59,9 +59,9 @@
 	</record>
 
 
-	<record id="estate_property_type_tree_twelve" model="ir.ui.view">
-		<field name="name">estate.property.type.twelve.tree</field>
-		<field name="model">estate.property.type.twelve</field>
+	<record id="estate_property_type_tree_thirteen" model="ir.ui.view">
+		<field name="name">estate.property.type.thirteen.tree</field>
+		<field name="model">estate.property.type.thirteen</field>
 		<field name="type">form</field>
 		<field name="arch" type="xml">
 			<tree>
@@ -80,10 +80,10 @@
 
 
 
-	<record id="estate_property_type_twelve_action"
+	<record id="estate_property_type_thirteen_action"
 		model="ir.actions.act_window">
 		<field name="name">Property Types</field>
-		<field name="res_model">estate.property.type.twelve</field>
+		<field name="res_model">estate.property.type.thirteen</field>
 		<field name="view_mode">tree,form</field>
 	</record>
 
