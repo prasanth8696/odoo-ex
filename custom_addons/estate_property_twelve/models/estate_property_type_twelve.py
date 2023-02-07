@@ -22,10 +22,9 @@ class EstatePropertyTypeTwelve(models.Model):
     
     @api.depends("offer_ids")
     def _compute_offer_count(self):
-  
-        self.offer_count = self.env['estate.property.offer.twelve'].search_count(
-                [('property_type_id', '=', self.id)])
-        
+        for rec in self:
+            rec.offer_count = len(rec.property_ids.offer_ids)
+            print(rec.offer_count)
     def show_offers(self):
         return {
              'type' : 'ir.actions.act_window',

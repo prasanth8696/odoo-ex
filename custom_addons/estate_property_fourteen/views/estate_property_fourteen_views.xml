@@ -1,8 +1,8 @@
 <odoo>
 
-	<record id="estate_property_tree_thirteen" model="ir.ui.view">
-		<field name="name">estate.property.thirteen.tree</field>
-		<field name="model">estate.property.thirteen</field>
+	<record id="estate_property_tree_fourteen" model="ir.ui.view">
+		<field name="name">estate.property.fourteen.tree</field>
+		<field name="model">estate.property.fourteen</field>
 		<field name="arch" type="xml">
 			<tree
 				decoration-success="status in ('offer accepted','offer received')"
@@ -12,8 +12,7 @@
 				<field name="name" />
 				<field name='property_type_id' />
 				<field name="post_code" />
-				<field name="tag_ids" widget="many2many_tags"
-					options="{'color_field' : 'color' }" />
+				<field name="tag_ids" widget="many2many_tags" options="{'color_field' : 'color' }" />
 				<field name="bedrooms" />
 				<field name="living_area" />
 				<field name="expected_price" />
@@ -26,9 +25,9 @@
 	</record>
 
 
-	<record id="estate_property_form_thirteen" model="ir.ui.view">
-		<field name="name">estate.property.thirteen.form</field>
-		<field name="model">estate.property.thirteen</field>
+	<record id="estate_property_form_fourteen" model="ir.ui.view">
+		<field name="name">estate.property.fourteen.form</field>
+		<field name="model">estate.property.fourteen</field>
 		<field name="type">form</field>
 		<field name="arch" type="xml">
 			<form string="properties">
@@ -86,7 +85,7 @@
 								<group>
 									<field name="offer_ids"
 										attrs="{'readonly' : ['|','|',('status','=','offer accepted'),('status', '=', 'sold'),('status', '=',  'canceled')]}">
-										<tree editable="bottom" id="offer_id_thirteen"
+										<tree editable="bottom" id="offer_id_fourteen"
 											decoration-success="status=='accepted'"
 											decoration-danger="status=='refused'">
 											<field name="price" />
@@ -139,9 +138,9 @@
 	</record>
 
 
-	<record id="estate_property_search_thirteen" model="ir.ui.view">
-		<field name="name">estate.property.thirteen.search</field>
-		<field name="model">estate.property.thirteen</field>
+	<record id="estate_property_search_fourteen" model="ir.ui.view">
+		<field name="name">estate.property.fourteen.search</field>
+		<field name="model">estate.property.fourteen</field>
 		<field name="type">search</field>
 		<field name="arch" type="xml">
 			<search>
@@ -174,18 +173,18 @@
 
 
 
-	<record id="estate_property_thirteen_action"
+	<record id="estate_property_fourteen_action"
 		model="ir.actions.act_window">
 		<field name="name">properties</field>
-		<field name="res_model">estate.property.thirteen</field>
+		<field name="res_model">estate.property.fourteen</field>
 		<field name="view_mode">tree,form</field>
-		<field name="view_id" ref="estate_property_tree_thirteen" />
+		<field name="view_id" ref="estate_property_tree_fourteen" />
 		<field name="context"> {'search_default_available': True,
 			'search_default_current': True}
 		</field>
 	</record>
 
-	<record id="user_inherit_view_thirteen" model="ir.ui.view">
+	<record id="user_inherit_view_fourteen" model="ir.ui.view">
 
 		<field name="name">res.users.form.inherit</field>
 		<field name="model">res.users</field>

@@ -1,0 +1,36 @@
+<odoo>
+		    <menuitem id="test_menu_root_fourteen" 
+		    name="Real Estate fourteen"
+		    />
+		    
+ 			<menuitem id="test_first_level_menu_fourteen" 
+ 			parent="test_menu_root_fourteen" 
+ 			sequence="10" 
+ 			name="Advertisements"
+ 			/>
+ 			
+ 			<menuitem id="estate_property_settings" 
+ 			name="settings" 
+ 			sequence="10"
+ 			parent="test_menu_root_fourteen"
+ 			/>
+ 			
+			<menuitem id="estate_property_menu_action_fourteen"
+			 parent="test_first_level_menu_fourteen" 
+			 name = "Properties" 
+			 action="estate_property_fourteen_action"
+			 />
+			
+			<menuitem id="estate_property_types"
+			 name="Property Types" 
+			 parent="estate_property_settings" 
+			 action="estate_property_type_fourteen_action"
+			 />
+			 
+			 <menuitem id="estate_property_tag_fourteen"
+			 name="Property Tags"
+			 parent="estate_property_settings"
+			 action="estate_property_tag_fourteen_action"
+			 />
+
+</odoo>

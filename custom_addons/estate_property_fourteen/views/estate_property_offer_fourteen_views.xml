@@ -1,7 +1,7 @@
 <odoo>
-	<record id="offer_id_twelve_tree" model="ir.ui.view">
-		<field name="name">estate.property.offer.twelve.tree</field>
-		<field name="model">estate.property.offer.twelve</field>
+	<record id="offer_id_fourteen_tree" model="ir.ui.view">
+		<field name="name">estate.property.offer.fourteen.tree</field>
+		<field name="model">estate.property.offer.fourteen</field>
 		<field name="arch" type="xml" >
 
 
@@ -26,7 +26,7 @@
 
 
 
- 
+
 
 
 

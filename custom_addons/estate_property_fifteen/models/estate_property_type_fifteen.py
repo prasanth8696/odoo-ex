@@ -3,13 +3,13 @@ from odoo import models,fields,api
 
 # estate property  type  model
 # many to one relationship with estate property model
-class EstatePropertyTypeThirteen(models.Model):
-    _name = "estate.property.type.thirteen"
-    _description = "type of estate properties for module thirteen"
+class EstatePropertyTypeFifteen(models.Model):
+    _name = "estate.property.type.fifteen"
+    _description = "type of estate properties for module fifteen"
 
     name = fields.Char(string="property Type", required=True)
-    property_ids = fields.One2many("estate.property.thirteen","property_type_id",string = "properties",)
-    offer_ids = fields.One2many("estate.property.offer.thirteen","property_type_id",string = "offers")
+    property_ids = fields.One2many("estate.property.fifteen","property_type_id",string = "properties",)
+    offer_ids = fields.One2many("estate.property.offer.fifteen","property_type_id",string = "offers")
     offer_count = fields.Integer(string = "count",compute="_compute_offer_count")
     sequence = fields.Integer(string = "Sequence" , default = 1)
     _sql_constraints = [
@@ -22,17 +22,16 @@ class EstatePropertyTypeThirteen(models.Model):
     
     @api.depends("offer_ids")
     def _compute_offer_count(self):
-        self.offer_count = 10
-  
-#         offers = self.env['estate.property.offer.thirteen'].browse(self.id)
-#         print(offers)
-    
+        for rec in self:
+            rec.offer_count = len(rec.property_ids.offer_ids)
+            print(rec.offer_count)
+     
         
     def show_offers(self):
         return {
              'type' : 'ir.actions.act_window',
              'name' : 'Offers',
-             'res_model' : 'estate.property.offer.thirteen',
+             'res_model' : 'estate.property.offer.fifteen',
              'view_mode' : 'tree,form',
               'target' : 'current',
               'context': "{'create': False}",
