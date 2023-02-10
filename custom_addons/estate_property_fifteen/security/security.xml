@@ -1,0 +1,34 @@
+<odoo>
+
+	<record id="base.module_category_real_estate_brokerage" model="ir.module.category">
+		<field name="description">Helps you manage your employees.</field>
+        <field name="sequence">9</field>
+	</record>
+	<record id="estate_group_user" model="res.groups">
+		<field name="name">Agent</field>
+		<field name="category_id" ref="base.module_category_real_estate_brokerage" />
+	</record>
+	
+	<record id="estate_group_manager" model="res.groups">
+		<field name="name">Manager</field>
+		<field name="category_id" ref="base.module_category_real_estate_brokerage" />
+		<field name="implied_ids" eval="[(6, 0, [ ref('estate_group_user')])]"/>
+	</record>
+	
+
+	
+	<record id="view_rule_id" model="ir.rule">
+    <field name="name">for view the record</field>
+    <field name="model_id" ref="model_estate_property_fifteen"/>
+    <field name="perm_unlink" eval="False"/>
+    <field name="groups" eval="[Command.link(ref('estate_group_user'))]"/>
+    <field name="domain_force">[
+        '|', ('sales_person', '=', user.id),
+             ('sales_person', '=', False)
+    ]</field>
+</record>
+
+
+
+
+</odoo>

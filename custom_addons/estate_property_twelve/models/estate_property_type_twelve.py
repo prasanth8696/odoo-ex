@@ -32,6 +32,7 @@ class EstatePropertyTypeTwelve(models.Model):
              'res_model' : 'estate.property.offer.twelve',
              'view_mode' : 'tree,form',
               'target' : 'current',
+              'domain' : [('property_type_id','=',self.id)],
               'context': "{'create': False}",
               
              }

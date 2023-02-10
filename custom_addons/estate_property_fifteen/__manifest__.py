@@ -3,18 +3,26 @@
     'version' : '1.0',
     'depends' : ['base'],
     'author' : 'ayyappan',
-    'category' : 'services',
+    'category' : 'Real Estate/Brokerage',
     'description' : '''
     this is my first module ''',
     
-    'data' : ['views/estate_property_tag_fifteen_views.xml',
+    'data' : ["wizard/cancel_wizard.xml",
+              'views/estate_property_tag_fifteen_views.xml',
               'views/estate_property_fifteen_views.xml',
               'views/estate_property_type_fifteen_views.xml',
               'views/estate_property_fifteen_menu.xml',
               'security/ir.model.access.csv',
-              'views/estate_property_offer_fifteen_views.xml'
+              'security/security.xml',
+              'views/estate_property_offer_fifteen_views.xml',
+              "reports/report.xml",
+              "reports/offer_template.xml"
+              
+             
               ],
     
     'application': True
     
     }
+
+

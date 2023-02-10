@@ -64,6 +64,7 @@ class EstatePropertyFifteen(models.Model):
     
     total_area = fields.Integer(compute="_compute_total", string="Total Area")
     best_offer = fields.Float(compute="_compute_best_price", string="Best Offer")
+    cancel_reason = fields.Char(string="Cancel Reason")
 
     _order = "id DESC"  #automated field for unique identification  
     _sql_constraints = [
@@ -109,6 +110,7 @@ class EstatePropertyFifteen(models.Model):
             self.garden_orientation = None
 
     # for sold the property
+    
     def sold_property(self):
         # check the property is cancel or not
         # if state is cancel throw userError
@@ -120,7 +122,8 @@ class EstatePropertyFifteen(models.Model):
         else:
             self.status = "sold"
     #for cancel the property
-    def cancel_property(self):
+    def cancel_property(self,reason):
+        print('hello from property classs')
         # check property status is offer accepted if yes means raise user error
         if self.status == "offer accepted":
             raise UserError(_("you cannot cancel offer accepted property")) 
@@ -130,7 +133,7 @@ class EstatePropertyFifteen(models.Model):
             raise UserError(_(" sold property cannot be canceled."))
         else:
             self.status = "canceled"
-            
+            self.cancel_reason = reason
             
     @api.constrains("selling_price")
     def  _check_selling_price(self):

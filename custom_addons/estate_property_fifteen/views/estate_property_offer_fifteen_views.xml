@@ -2,12 +2,11 @@
 	<record id="offer_id_fifteen_tree" model="ir.ui.view">
 		<field name="name">estate.property.offer.fifteen.tree</field>
 		<field name="model">estate.property.offer.fifteen</field>
-		<field name="arch" type="xml" >
+		<field name="arch" type="xml">
 
 
-			<tree  
-			decoration-success="status=='accepted'"
-			decoration-danger="status=='refused'" >
+			<tree decoration-success="status=='accepted'"
+				decoration-danger="status=='refused'">
 				<field name="price" />
 				<field name="partner_id" />
 				<field name="validity" />
@@ -24,8 +23,10 @@
 		</field>
 
 
+
+
 	</record>
-	
+
 
 
 

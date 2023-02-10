@@ -39,7 +39,7 @@
 				<header>
 					<button name="sold_property" string="sold" type="object"
 						attrs="{'invisible' : ['|',('status', '=', 'sold'),('status', '=',  'canceled')]}" />
-					<button name="cancel_property" string="cancel" type="object"
+					<button name="%(cancel_wizard_action)d" string="cancel" type="action" context="{'property_id' : id,}"
 						attrs="{'invisible' : ['|',('status', '=', 'sold'),('status', '=',  'canceled')]}" />
 					<field name="status" widget="statusbar"
 						statusbar_visible="new,offer received,offer accepted,sold" />
@@ -68,6 +68,8 @@
 							<field name="expected_price" />
 							<field name="best_offer" />
 							<field name="selling_price" />
+							<field name="cancel_reason" readonly="1" attrs="{'invisible' : [('cancel_reason','=','null')]}" />
+				
 						</group>
 						<notebook>
 							<page string="Description">
@@ -185,7 +187,7 @@
 		model="ir.actions.act_window">
 		<field name="name">properties</field>
 		<field name="res_model">estate.property.fifteen</field>
-		<field name="view_mode">kanban,tree,form</field>
+		<field name="view_mode">kanban,tree,form,pivot,graph,calendar</field>
 		<field name="view_id" ref="estate_property_tree_fifteen" />
 		<field name="context"> {'search_default_available': True,
 			'search_default_current': True}
@@ -259,7 +261,53 @@
 			</kanban>
 		</field>
 	</record>
+	
+	<!-- graph view -->
+	
+	<record id="estate_property_fifteen_graph" model="ir.ui.view">
+	
+		<field name="name">estate.property.fifteen.graph</field>
+		<field name="model">estate.property.fifteen</field>
+		<field name="arch" type="xml">
+		<graph string="offer details">
+			<field name="status" group="True"/>
+			
+			</graph>
+		</field>
+	</record>
+	
+	<!-- pivot view for estate property model -->
+	<record id="estate_property_fifteen_pivot" model="ir.ui.view">
+		<field name="name">estate.property.fifteen.pivot</field>
+		<field name="model">estate.property.fifteen</field>
+		<field name="arch" type="xml">
+			<pivot  string="pivot view">
+				<field name="property_type_id" type="row" />
+				<field name="status" type="col" />
+				<field name="expected_price" type="measure" />
+				<field name="selling_price" type="measure" />
+			</pivot>
+		</field>
+	</record>
+	<!-- calendar view for estate property model -->
+	
+	<record id="estate_property_fifteen_calendar" model="ir.ui.view" >
+	 	<field name="name">estate.property.fifteen.calendar</field>
+		<field name="model">estate.property.fifteen</field>
+		<field name="type">calendar</field>
+		<field name="arch" type="xml">
+			<calendar string="calendar view" date_start="create_date" quick_add="False" mode="month" color="status">
+				<field name="name"/>
+				<field name="expected_price" widget="monetary"/>
+				<field name="best_offer" widget="monetary"/>
+				<field name="selling_price"  widget="monetary"/>
+				<field name="status" />
+			</calendar>
+		</field>	
+	</record>
 
 
 </odoo>
+
+
 

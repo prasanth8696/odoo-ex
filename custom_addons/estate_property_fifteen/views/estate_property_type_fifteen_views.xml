@@ -12,7 +12,7 @@
 					<div class="oe_button_box" name="button_box">
 						<button name="show_offers" type="object" 
 							class="oe_stat_button" icon="fa-money">
-							<field name="offer_count" string="offers" widget="statinfo" />
+							<field name="offer_count" string="offers" widget="statinfo" attrs="{'invisible' : [('offer_count','=',0)]}"/>
 
 						</button>
 					</div>

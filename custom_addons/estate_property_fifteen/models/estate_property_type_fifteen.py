@@ -34,6 +34,8 @@ class EstatePropertyTypeFifteen(models.Model):
              'res_model' : 'estate.property.offer.fifteen',
              'view_mode' : 'tree,form',
               'target' : 'current',
+              'domain' : [('property_type_id','=',self.id)],
+
               'context': "{'create': False}",
               
               

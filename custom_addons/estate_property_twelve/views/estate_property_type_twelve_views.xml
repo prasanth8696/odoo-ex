@@ -11,7 +11,7 @@
 				<sheet>
 					<div class="oe_button_box" name="button_box">
 						<button name="show_offers" type="object" 
-							class="oe_stat_button" icon="fa-money">
+							class="oe_stat_button" icon="fa-money" attrs="{'invisible' : [('offer_count','=',0)]}">
 							<field name="offer_count" string="offers" widget="statinfo" />
 
 						</button>

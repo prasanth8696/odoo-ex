@@ -1,0 +1,33 @@
+<odoo>
+
+	<record id="cancel_wizard_form" model="ir.ui.view">
+		<field name="name">cancel.model.wizard.form</field>
+		<field name="model">cancel.model.wizard</field>
+		<field name="arch" type="xml">
+			<form string="">
+				<field name="reason" />
+				
+				<footer>
+					<button name="submit_wizard" type='object' string="submit" class="btn-primary" />
+					<button string="cancel" class="btn-secondary" special="cancel" />
+				</footer>
+			</form>
+		</field>		
+	</record>
+	
+	
+	<record id="cancel_wizard_action" model="ir.actions.act_window">
+		<field name="name">wizard action</field>
+		<field name="res_model">cancel.model.wizard</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="cancel_wizard_form" />
+		<field name="target">new</field>
+	
+	</record>
+	
+	
+
+
+
+
+</odoo>

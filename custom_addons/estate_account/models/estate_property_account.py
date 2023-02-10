@@ -7,9 +7,9 @@ class EstatePropertyAccount(models.Model):
     
     #override
     def sold_property(self):
-        print('dummy')
+        print(" reached ".center(100, '='))
         res = super().sold_property()
-        self.env["account.move"].create(
+        self.env["account.move"].sudo().create(
             {
                 "partner_id" : self.buyer.id,
                 "move_type" : "out_invoice",

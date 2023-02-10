@@ -24,7 +24,7 @@ class EstatePropertyOfferTwelve(models.Model):
     property_id = fields.Many2one(
         "estate.property.twelve", string="Property", required=True
     )
-    property_type_id = fields.Many2one("estate.property.type.twelve",string = "property type")
+    property_type_id = fields.Integer(related = "property_id.property_type_id.id")
     
     _sql_constraints = [
         ("positive_price","CHECK(price > 0.0)","Offer Price must be positive"),

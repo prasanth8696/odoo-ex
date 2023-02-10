@@ -1,5 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_estate_fifteen,access.estateProperty,model_estate_property_fifteen,base.group_user,1,1,1,1
-access_estate_type_fifteen,access.estateTypes,model_estate_property_type_fifteen,base.group_user,1,1,1,1
-access_estate_tag_fifteen,access.estateTags,model_estate_property_tag_fifteen,base.group_user,1,1,1,1
-access_estate_offer_fifteen,access.estateOffer,model_estate_property_offer_fifteen,base.group_user,1,1,1,0
+access_estate_fifteen,access.estateProperty,model_estate_property_fifteen,estate_group_manager,1,1,1,1
+access_estate_type_fifteen,access.estateTypes,model_estate_property_type_fifteen,estate_group_manager,1,1,1,1
+access_estate_tag_fifteen,access.estateTags,model_estate_property_tag_fifteen,estate_group_manager,1,1,1,1
+access_estate_offer_fifteen,access.estateOffer,model_estate_property_offer_fifteen,estate_group_manager,1,1,1,1
+access_estate_property_tag_user,access.estatePropertyTagUser,model_estate_property_tag_fifteen,estate_group_user,1,0,0,0
+access_estate_property_type_user,acess.estatePropertyTypeUser,model_estate_property_type_fifteen,estate_group_user,1,0,0,0
+access_estate_property_user,access.estatePropertyUser,model_estate_property_fifteen,estate_group_user,1,1,1,0
+access_estate_offer_user,access.estateOfferUser,model_estate_property_offer_fifteen,estate_group_user,1,1,1,0
+access_cancel_wizard,access.cancelWizard,model_cancel_model_wizard,,1,1,1,1
