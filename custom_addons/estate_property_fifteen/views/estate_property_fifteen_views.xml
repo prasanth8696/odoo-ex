@@ -35,17 +35,26 @@
 		<field name="model">estate.property.fifteen</field>
 		<field name="type">form</field>
 		<field name="arch" type="xml">
-			<form string="properties">
+			<form string="properties" attrs = "{'readonly' : [('status','=','sold')]}">
 				<header>
-					<button name="sold_property" string="sold" type="object"
+					<button name="sold_property" string="SOLD" type="object"  class="oe_highlight"
 						attrs="{'invisible' : ['|',('status', '=', 'sold'),('status', '=',  'canceled')]}" />
-					<button name="%(cancel_wizard_action)d" string="cancel" type="action" context="{'property_id' : id,}"
+					<button name="%(print_report_form_action)d" string="PRINT" type="action"  class="oe_highlight"  context="{'property_id' : id}"/>
+					<button name="%(cancel_wizard_action)d" string="CANCEL" type="action" class="oe_link" context="{'property_id' : id}"
 						attrs="{'invisible' : ['|',('status', '=', 'sold'),('status', '=',  'canceled')]}" />
+					<button name="button" string="button" type="object" />
 					<field name="status" widget="statusbar"
 						statusbar_visible="new,offer received,offer accepted,sold" />
 
 				</header>
 				<sheet>
+				
+					<widget name="web_ribbon" text="sold" attrs="{'invisible' : [('status','!=','sold')]}" />
+					<widget name="web_ribbon" text="canceled"  bg_color="bg-danger" attrs="{'invisible' : [('status','!=','canceled')]}" />
+					<widget name="web_ribbon" text="offer received" bg_color="bg-info" attrs="{'invisible' : [('status','!=','offer received')]}" />
+					<widget name="web_ribbon" text="Offer accepted" attrs="{'invisible' : [('status','!=','offer accepted')]}" />
+
+					
 					<div>
 						<label for="name" string="Title" />
 						<h1 class="mb32">
@@ -68,7 +77,7 @@
 							<field name="expected_price" />
 							<field name="best_offer" />
 							<field name="selling_price" />
-							<field name="cancel_reason" readonly="1" attrs="{'invisible' : [('cancel_reason','=','null')]}" />
+							<field name="cancel_reason"  attrs="{'invisible' : [('status','!=','canceled')]}" />
 				
 						</group>
 						<notebook>
@@ -190,8 +199,8 @@
 		<field name="view_mode">kanban,tree,form,pivot,graph,calendar</field>
 		<field name="view_id" ref="estate_property_tree_fifteen" />
 		<field name="context"> {'search_default_available': True,
-			'search_default_current': True}
-		</field>
+			'search_default_current': True , 'turn_view_readonly' : True }
+		</field> <!-- turn view readonly not working... -->
 	</record>
 
 	<record id="user_inherit_view_fifteen" model="ir.ui.view">
@@ -211,6 +220,23 @@
 
 			</notebook>
 		</field>
+	</record>
+
+	<record id="inherit_sale_order" model="ir.ui.view">
+		<field name="name">inherit.sale.order</field>
+		<field name="model">sale.order</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="sale.view_order_form" />
+		<field name="arch" type="xml" >
+			<xpath expr="//field[@name='payment_term_id']" position="after">
+				<field name="property_type_id" attrs="{'readonly' : [('state', 'not in', ['draft','sent'])]}" />
+			</xpath>
+			
+			<xpath expr="//field[@name='property_type_id']" position="after" >
+				<field name="property" domain="[('status','=','sold')]"  attrs = "{'readonly' : [('state', 'not in', ['draft','sent'])]}"/>
+			</xpath>
+		</field>
+	
 	</record>
 
 

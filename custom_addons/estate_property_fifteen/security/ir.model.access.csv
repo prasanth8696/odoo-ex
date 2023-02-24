@@ -8,3 +8,6 @@ access_estate_property_type_user,acess.estatePropertyTypeUser,model_estate_prope
 access_estate_property_user,access.estatePropertyUser,model_estate_property_fifteen,estate_group_user,1,1,1,0
 access_estate_offer_user,access.estateOfferUser,model_estate_property_offer_fifteen,estate_group_user,1,1,1,0
 access_cancel_wizard,access.cancelWizard,model_cancel_model_wizard,,1,1,1,1
+access_journal_entry,access.journal,account.model_account_move,estate_group_user,1,0,0,0
+access_print_offer,access.PrintOfferUser,model_print_property_report,estate_group_manager,1,1,1,0
+access_print_offer_user,access.PrintOfferUser,model_print_property_report,estate_group_user,1,1,1,0

@@ -1,0 +1,32 @@
+<odoo>
+
+	<record id="print_property_report_form" model="ir.ui.view">
+		<field name="name">print.property.report.form</field>
+		<field name="model">print.property.report</field>
+		<field name="arch" type="xml" >
+			<form>
+					<div>
+						<h1 class="oe_text_center">
+							<field name="name" readonly="1" />
+						</h1>
+					</div>
+				<footer>
+					<button name="print_pdf" string="Export Pdf" type="object" class="oe_highlight" />
+					<button name="print_excel" string="Export Excel" type="object" class="oe_highlight" />
+					<button string="cancel" special="cancel" class="oe_link" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="print_report_form_action" model="ir.actions.act_window">
+		<field name="name">Print Report</field>
+		<field name="res_model">print.property.report</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+
+
+</odoo>
+

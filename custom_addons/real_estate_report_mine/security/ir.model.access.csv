@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_realestate_report,access.realestate.report,model_real_estate_report,,1,1,1,0
+access_realestate_screen,access.realestate.report.screen,model_real_estate_show,,1,1,1,0
+access_realestate_line,access.realestate.line.report,model_real_estate_line,,1,1,1,0
+access_estate_type,access.EstateType,estate_property_fifteen.model_estate_property_type_fifteen,base.group_user,1,0,0,0
+access_excel_model,access.EstaeExcel_model,model_excel_report,base.group_user,1,1,1,0

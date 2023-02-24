@@ -1,0 +1,40 @@
+<odoo>
+
+	<record id="my_category_tree" model="ir.ui.view">
+		<field name="name">my.categories.tree</field>
+		<field name="model">my.categories</field>
+		<field name="arch" type="xml">
+			<tree string="categories">
+				<field name="name" />
+				<field name="sequence" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="my_category_form" model="ir.ui.view">
+		<field name="name">my.categories.form</field>
+		<field name="model">my.categories</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<group>
+							<field name="name" />
+						</group>
+						<group>
+							<field name="sequence" />
+						</group>
+					</group>
+					<notebook>
+						<page string="Products">
+							<field name="product_ids" />
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+
+
+</odoo>

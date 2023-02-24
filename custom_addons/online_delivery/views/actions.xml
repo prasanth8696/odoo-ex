@@ -1,0 +1,40 @@
+<odoo>
+	<record id="orders_action" model="ir.actions.act_window">
+		<field name="name">Orders</field>
+		<field name="res_model">my.orders</field>
+		<field name="view_mode">tree,form</field>
+	
+	
+	</record>
+	
+	<record id="customer_action" model="ir.actions.act_window">
+		<field name="name">Customers</field>
+		<field name="res_model">res.partner</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+	
+	<record id="product_action" model="ir.actions.act_window">
+		<field name="name">Products</field>
+		<field name="res_model">my.product</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+	
+	<record id="category_action" model="ir.actions.act_window">
+		<field name="name">Categories</field>
+		<field name="res_model">my.categories</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+	<record id="purchase_action" model="ir.actions.act_window">
+		<field name="name">Purchase</field>
+		<field name="res_model">my.purchase</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+	
+	
+	
+
+</odoo>

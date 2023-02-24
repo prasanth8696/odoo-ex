@@ -8,6 +8,8 @@ class EstatePropertyAccount(models.Model):
     #override
     def sold_property(self):
         print(" reached ".center(100, '='))
+        self.check_access_rights("write")
+        
         res = super().sold_property()
         self.env["account.move"].sudo().create(
             {

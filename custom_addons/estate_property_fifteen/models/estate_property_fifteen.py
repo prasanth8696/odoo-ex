@@ -1,3 +1,4 @@
+import random
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from odoo import api, models, fields, _
@@ -114,7 +115,6 @@ class EstatePropertyFifteen(models.Model):
     def sold_property(self):
         # check the property is cancel or not
         # if state is cancel throw userError
-        print('original')
         if self.status == "canceled":
             raise UserError(_("canceled property cannot be sold"))
         elif self.status in ("new","offer received") :
@@ -124,7 +124,7 @@ class EstatePropertyFifteen(models.Model):
     #for cancel the property
     def cancel_property(self,reason):
         print('hello from property classs')
-        # check property status is offer accepted if yes means raise user error
+        # check property status is offer accepted if yes means raise user error by ayyappan on 14-02-2023
         if self.status == "offer accepted":
             raise UserError(_("you cannot cancel offer accepted property")) 
    
@@ -151,18 +151,56 @@ class EstatePropertyFifteen(models.Model):
             if not (rec.status in ('new','canceled')) :
                raise UserError(_("only new and cancel properties can be deleted"))
            
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+           
+    def button(self):
+        print(self.env.company.name)
+        print(self.env.company.company_details)
+#         return self.env.ref("estate_property_fifteen.temp_template").report_action(self)
+           
+#            
+#     def practice(self):
+#         partner = random.sample(self.env["res.partner"].search([]),k=1)
+#         res = self.env["sale.order"].create(
+#             {
+#                 "partner_id" : partner[0].id
+#             }
+#         )
+#         properties = self.env["estate.property.twelve"].search_read([],[])
+#         for property in properties :
+#             print(property)
+#         print(res)
+#         
+# #     @api.model 
+# #     def create(self,vals):
+# #         del vals["cancel_reason"]
+# #         res = self.env["estate.property.twelve"].create(vals)
+# #         return res
+# #     
+# #     def practice2(self):
+# # 
+# #             properties = self.env["estate.property.twelve"].search_read([],[])
+# #             property = properties[0]
+# #             property["cancel_reason"] = "NOT AVAILABLE"
+# #             property["property_type_id"] = 2
+# #             res = self.env["estate.property.fifteen"].create(
+# #                 {
+# #                     'name' : property["name"],
+# #                     "property_type_id" : 2,
+# #                     "expected_price" : property["expected_price"]})
+# #             print(res)
+#        
+#        
+# 
+#         
+#         
+#         
+#         
+#         
+#         
+#         
+#         
+#         
+#         
+#         
+#         
+#         

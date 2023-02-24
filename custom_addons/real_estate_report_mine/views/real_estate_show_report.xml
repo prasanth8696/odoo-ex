@@ -1,0 +1,68 @@
+<odoo>
+
+	<record id="real_estate_report_screen" model="ir.ui.view">
+		<field name="name">real.estate.show.tree</field>
+		<field name="model">real.estate.show</field>
+		<field name="arch" type="xml" >
+			<form readonly="1">
+			 	<header>
+			 		<button name="print_pdf_report" type="object" class="oe_highlight" string="print PDF" />
+			 		<button name="print_excel_report" type="object" class="oe_highlight" string="print Excel" />
+			 		
+			 	</header>
+				<sheet>
+					<div class="oe_bold">
+							<h1 class="oe_text_center">Real Estate Report</h1>
+						</div>
+						<div class="oe_row oe_spaced">
+							<h4>
+								 <p>
+									DATE FROM :
+									<field name="start_date" class="oe_inline" />
+									DATE TO :
+									<field name="end_date" class="oe_inline" />
+									Property Type :
+									<field name="property_type_id" class="oe_inline" />
+									Status : 
+									<field name="status" class="oe_inline"/>
+								</p> 
+								
+							</h4>
+						</div>
+						<group>
+						
+						<group>
+							<field name="estate_line_ids"   readonly="1"/>
+						</group>
+						</group>
+				</sheet>
+		
+			</form>
+			</field>
+			
+			</record>
+
+
+
+
+
+	<record id="real_estate_report_line" model="ir.ui.view">
+		<field name="name">real.estate.line.tree</field>
+		<field name="model">real.estate.line</field>
+		<field name="arch" type="xml" >
+			<tree  string="Lines" >
+				<field name="property_name" />
+				<field name="property_type" />
+				<field name="buyer" />
+				<field name="seller" />
+				<field name="selling_price" />
+				<field name="date" />
+			</tree>
+			</field>
+	</record>
+
+
+
+
+
+</odoo>

@@ -1,0 +1,86 @@
+<odoo>
+
+	<record id="my_orders_tree" model="ir.ui.view">
+		<field name="name">my.orders.tree</field>
+		<field name="model">my.orders</field>
+		<field name="arch" type="xml">
+			<tree string="orders">
+				<field name="order_id" />
+				<field name="creation_date" />
+				<field name="expected_date" />
+				<field name="customer" />
+				<field name="product_id" />
+				<field name="quantity" />
+				<field name="total_amt" />
+				<field name="status" decoration-primary="status == 'shipped'"
+					decoration-success="status == 'delivered'"
+					decoration-info="status == 'confirmed'"
+					decoration-danger="status == 'canceled'" widget="badge" />
+
+			</tree>
+
+		</field>
+	</record>
+
+	<record id="my_order_form" model="ir.ui.view">
+
+		<field name="name">my.orders.form</field>
+		<field name="model">my.orders</field>
+		<field name="arch" type="xml">
+			<form string="orders">
+				<header>
+					<button name="ship_order" string="ship" type="object" class="btn-primary"
+						attrs="{'invisible' : ['|','|',('status', '=', 'shipped'),('status', '=',  'canceled'),('status', '=',  'delivered')]}" />
+						
+					<button name="make_deliver" string="delivered" type="object" class="btn-primary"
+						attrs="{'invisible' : [('status' ,'not in' ,['shipped'])]}" />
+											<button name="cancel_order" string="cancel" type="object"
+						attrs="{'invisible' : [('status', 'in' ,['shipped','canceled','delivered'])]}" />
+					<field name="status" widget="statusbar"
+						statusbar_visible="confirmed,shipped,delivered" />
+
+				</header>
+				<sheet>
+					<div>
+						<label for="order_id" string="Order Id" />
+						<h1 class="mb32">
+							<field name="order_id" class="mb16" />
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="product_id"
+								options="{'no_create': True, 'no_open': True}" />
+							<field name="customer" />
+							<field name="creation_date" />
+						</group>
+						<group>
+							<field name="expected_date" />
+							<field name="delivery_date" />
+							<field name="quantity" />
+							<field name="total_amt" />
+
+						</group>
+
+					</group>
+
+
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</odoo>

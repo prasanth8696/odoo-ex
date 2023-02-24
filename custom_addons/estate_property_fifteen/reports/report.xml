@@ -2,7 +2,7 @@
 
 
 	<template id="offer_table_template">
-		<table t-if="property.offer_ids" class="table">
+		<table t-if="property.offer_ids" class="offer_table" >
 			<thead>
 				<tr>
 					<th>Price</th>
@@ -29,12 +29,13 @@
 						<span t-field="offer.dead_line" />
 					</td>
 					<td>
-						<span t-field="offer.status" />
+						<span t-if="offer.status == 'accepted'" t-field="offer.status" style="color: green" />
+						<span t-if="offer.status == 'refused'" t-field="offer.status" style="color: red" />
 					</td>
 				</tr>
 			</tbody>
 		</table>
-		<strong t-else="">No offers have been made yet</strong>
+		<strong t-else="" id="no_offer">No offers have been made yet</strong>
 
 
 	</template>
@@ -108,6 +109,178 @@
 			</t>
 		</t>
 	</template>
+	
+	
+	
+	<template id ="temp_t">
+		<t t-foreach="docs" t-as="property">
+		<t t-call="web.html_container">
+					<div class="page">
+					
+					<style>
+					 strong {
+					 	font-size: 13px;
+					 }
+					 #no_offer {
+					 	text-align: center;
+					 	font-size: 20px;
+					 }
+					 
+					 td {
+					 	padding: 5px 20px;
+					 	margin: 2px 20px;
+					 }
+					 table {
+					 	font-size: 13px;
+					 	
+					 }
+					 .offer_table {
+					 	
+					 	margin-left: 36px;
+					 	font-size: 15px;
+					 	background-color: rgba(211, 211, 211,0.3);
+					 	font-family: "Lucida Console", "Courier New", monospace;
+					 	
+					 }
+					 
+					 .offer_table td {
+					 	padding: 5px 30px;
+					 	border-sizing: border-box;
+					 	border-right: 2px inset black;
+					 	border-bottom: 2px inset black;
+					 	
+					 }
+					 .offer_table th {
+					 	padding: 5px 30px;
+					 	border-right: 2px inset black;
+					 	border-bottom: 2px inset black;
+					 	}
+					 	
+					 
+					</style>
+					<strong style="margin-left: 600px;">Created on : </strong><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')" style="font-size: 15px"/> 
+					
+					<h2 style="margin-left: 300px;color: #808080 ">Property Report</h2>
+					<table  style="margin-bottom: 50px;  font-family: 'Lucida Console', 'Courier New', monospace;">
+						<thead>
+							<tr>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+							
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="2"/>
+								<td colspan="3"> <strong>Property Name : </strong>
+								
+								<span t-field="property.name"/>
+								 </td>
+								 <td colspan="4" style="padding-left: 150px; padding-right: 60px"> <strong>Available From : </strong>
+								 <span t-field="property.date_availability"/>
+								 </td>
+								 <td>
+								 	<strong>Expected Price : </strong>
+								 	<span t-field="property.expected_price" />
+								 </td>
+							
+							
+							</tr>
+							
+							<tr>
+								<td colspan="2"/>
+								<td colspan="3"> <strong>Type : </strong>
+								<t t-out="property.property_type_id.name.upper()"/>
+								 </td>
+								 <td colspan="4" style="padding-left: 150px; padding-right: 60px"> <strong>Bedrooms : </strong>
+								 <span t-field="property.bedrooms"/>
+								 </td>
+								 <td>
+								 	<strong>Best Price : </strong>
+								 	<span t-field="property.best_offer" />
+								 </td>
+							</tr>
+							
+							<tr>
+								<td colspan="2"/>
+								<td colspan="3"> <strong>Sales Person : </strong>
+								<span t-field="property.sales_person"/>
+								 </td>
+								 <td colspan="4" style="padding-left: 150px; padding-right: 60px"> <strong>Facades : </strong>
+								 <span t-field="property.facades"/>
+								 </td>
+								 <td>
+								 	<strong>selling Price : </strong>
+								 	<span t-field="property.selling_price" />
+								 </td>
+								  
+							
+							</tr>
+							
+							
+							<tr>
+								<td colspan="2"/>
+								<td colspan="3"> <strong>Buyer : </strong>
+								<span t-field="property.buyer" />
+								 </td>
+								  <td colspan="4" style="padding-left: 150px; padding-right: 60px"> <strong>Garage : </strong>
+								 <span  t-if="property.garage" t-out="Available" /> 
+								 <span t-else="">Not Available</span>
+								 </td>
+								 <td>
+								 	<strong>Total Area(sqm) : </strong>
+								 	<span t-field="property.total_area" />
+								 </td>
+							</tr>
+							<tr>
+								<td colspan="2"/>
+								<td colspan="3"> <strong></strong>
+								<span></span>
+								 </td>
+								  <td colspan="4" style="padding-left: 150px; padding-right: 60px"> <strong>Garden : </strong>
+								 <span  t-if="property.garden" t-field="property.garden_orientation" /> 
+								 <span t-else="">Not Available</span>
+								 </td>
+								 <td>
+								 	<strong>Status : </strong>
+								 	<span t-if="property.status == 'new'" t-field="property.status"  style="color: blue;"/>
+								 	<span t-elif="property.status == 'offer received'" t-field="property.status"  style="color: blue;"/>								 
+								 	<span t-elif="property.status == 'offer accepted'" t-field="property.status"  style="color: lightgreen;"/>								 
+								 	<span t-elif="property.status == 'sold'" t-field="property.status"  style="color: green "/>
+								 	<span t-elif="property.status == 'canceled'" t-field="property.status"  style="color: red;"/>								 
+								 
+								 </td>
+							</tr>
+							<tr>
+								<td colspan="2"/>
+								<td colspan="3"> <strong></strong>
+								<span></span>
+								 </td>
+								  <td colspan="4" style="padding-left: 150px; padding-right: 60px"> <strong>Garden Area(sqm) : </strong>
+								 <span  t-if="property.garden" t-field="property.garden_area" /> 
+								 <span t-else="">Not Available</span>
+								 </td>
+								  <td>
+								 	<strong>Post Code : </strong>
+								 	<span t-field="property.post_code" />
+								 </td>
+							</tr>
+						</tbody>
+						</table>
+						<t t-call="estate_property_fifteen.offer_table_template"></t>
+					</div>
+				</t>
+			</t>
+	</template>
 
 
 	
@@ -116,10 +289,8 @@
 		<field name="name">offer card</field>
 		<field name="model">estate.property.fifteen</field>
 		<field name="report_type">qweb-pdf</field>
-		<field name="report_name">estate_property_fifteen.offer_report_template
-		</field>
-		<field name="report_file">estate_property_fifteen.offer_report_template
-		</field>
+		<field name="report_name">estate_property_fifteen.offer_report_template</field>
+		<field name="report_file">estate_property_fifteen.offer_report_template</field>
 		<field name="print_report_name">"offer card"</field>
 		<field name="binding_model_id"
 			ref="model_estate_property_fifteen" />
@@ -137,6 +308,542 @@
 		<field name="binding_model_id" ref="base.model_res_users" />
 		<field name="binding_type">report</field>
 	</record>
+	
+	<record id="temp_template" model="ir.actions.report">
+		<field name="name">property report</field>
+		<field name="model">estate.property.fifteen</field>
+		<field name="report_type">qweb-pdf</field>
+		<field name="report_name">estate_property_fifteen.temp_t</field>
+		<field name="report_file">estate_property_fifteen.temp_t</field>
+		<field name="print_report_name">"property card"</field>
+		<field name="binding_model_id"
+			ref="model_estate_property_fifteen" />
+		<field name="binding_type">report</field>
+	</record>
+	
+	<!-- practice for pothys report -->
+	
+	<template id="template">
+			<t t-call="web.html_container" >
+			<div class="page">
+				<div class="oe_structure" />
+				
+				<style>
+				
+					.table_1 tr {
+			border: 10px dotted lightgreen;
+			
+		}
+		
+		.table_1 th {
+			text-align: center;
+			border-top: 2px solid darkblue;
+			border-bottom: 2px solid darkblue;
+			border-right: 1px dotted lightgreen;
+			background-color: #C2DFFF;
+			padding: 3px 3px 3px 3px;s
+			font-size: 10px
+		}
+		
+		.table_1 td {
+			text-align: end;
+			border-right: 1px dotted lightgreen;
+			padding: 5px 5px;
+			font-size: 10px
+			
+		}
+
+		.table_2 th {
+			font-size: 15px;
+			padding: 3px 30px 3px 6px;
+			border-bottom: 1px solid green;
+			}
+		.table_2 td {
+			font-size: 10px;
+		}
+		
+		.table_3 td {
+			font-size: 13px;
+		}
+		
+		.table_3 th {
+		 font-size: 15px;
+		 padding-left: 30px;
+		 padding-right: 30px; 
+		}
+			
+			
+			
+				</style>
+				<h3 style="text-align: center">GOODS RECEIPT NOTE</h3>
+				
+				
+				<table class="table_3">
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							
+
+							
+							
+						</tr>
+					<tbody>
+					
+						<tr>
+							<td colspan="2" ></td>
+							<td colspan="5" >
+								<strong></strong>
+								<span></span>
+							</td>
+							<td colspan="2">
+								<strong></strong>
+								<span></span>
+							</td>
+							
+							<td colspan="6" >
+								<strong style="font-size: 20px">Credit Days : </strong>
+								<span style="font-size: 20px">30</span>
+							</td>
+						
+						</tr>					
+					
+						<tr>
+							<td colspan="2"><strong>Pothys Private Limited</strong></td>
+							<td colspan="4" >
+								<strong >VENDOR : </strong>
+								<span>LAXMI PLASTICS</span>
+							</td>
+							<td></td>
+							<td></td>
+							<td colspan="4" >
+								<strong>Bill No :</strong>
+								<span > 15463 </span>
+							</td>
+							
+							<td colspan="4" >
+								<strong>Cross Amt :  </strong>
+								<span>49,295.13</span>
+							</td>
+						
+						</tr>
+						<tr>
+							<td colspan="2"><strong >400, Anna Salai</strong></td>
+							<td colspan="5" >
+								<strong></strong>
+								<span></span>
+							</td>
+							<td colspan="4" >
+								<strong>Bill Date : </strong>
+								<span> 29/02/2023</span>
+							</td>
+							
+							<td colspan="4" >
+								<strong>Tax Amt :  </strong>
+								<span>6,743.12</span>
+							</td>
+						
+						</tr>
+						
+						<tr>
+							<td colspan="2" ><strong >Puducherry</strong></td>
+							<td colspan="5" >
+								<strong></strong>
+								<span></span>
+							</td>
+							<td colspan="4">
+								<strong>GRN No : </strong>
+								<span>GR22/23_21744</span>
+							</td>
+							
+							<td colspan="4" >
+								<strong>CD Total :  </strong>
+								<span>0.00</span>
+							</td>
+						
+						</tr>
+						
+						<tr>
+							<td colspan="2" ><strong >PONDY</strong></td>
+							<td colspan="5" >
+								<strong>Code : </strong>
+								<span>1000336</span>
+							</td>
+							<td colspan="4" >
+								<strong>GRN Date: </strong>
+								<span>29/02/2023</span>
+							</td>
+							
+							<td colspan="4" >
+								<strong>Add/Ded : </strong>
+								<span> -0.25</span>
+							</td>
+						
+						</tr>
+						
+						<tr>
+							<td colspan="2" ></td>
+							<td colspan="5" >
+								<strong>GSTIN NO: </strong>
+								<span>34BWCPDI244G1Z5</span>
+							</td>
+							<td colspan="4">
+								<strong>CreatedBy: </strong>
+								<span>PRASHANTH</span>
+							</td>
+							
+							<td colspan="4" >
+								<strong>Addnl Amt :  </strong>
+								<span>0.00</span>
+							</td>
+						
+						</tr>
+						
+						<tr>
+							<td colspan="2" ></td>
+							<td colspan="5" >
+								<strong>Phone : </strong>
+								<span>9867218936</span>
+							</td>
+							<td colspan="4">
+								<strong>PO no : </strong>
+								<span></span>
+							</td>
+							
+							<td colspan="4" >
+								<strong>TCS Amount : </strong>
+								<span>0.00</span>
+							</td>
+						
+						</tr>		
+						<tr>
+							<td colspan="2" ></td>
+							<td colspan="5" >
+								<strong></strong>
+								<span></span>
+							</td>
+							<td colspan="4">
+								<strong>PO Date : </strong>
+								<span></span>
+							</td>
+							
+							<td colspan="4" >
+								<strong>Bill Disc Amt :</strong>
+								<span>0.00</span>
+							</td>
+						
+						</tr>			
+						<tr>
+							<td colspan="2" ></td>
+							<td colspan="5" >
+								<strong></strong>
+								<span></span>
+							</td>
+							<td colspan="8">
+								<strong>Created : </strong>
+								<span>08-02-2023 10:56:32 AM</span>
+							</td>
+							
+							
+						
+						</tr>	
+						
+						<tr>
+							<td colspan="2" ></td>
+							<td colspan="5" >
+								<strong></strong>
+								<span></span>
+							</td>
+							<td colspan="4">
+								<strong></strong>
+								<span></span>
+							</td>
+							
+							<td colspan="4" >
+								<strong style="font-size: 20px">GRN Total : </strong>
+								<span style="font-size: 20px">56,038.00</span>
+							</td>
+						
+						</tr>					
+					</tbody>
+					
+					</thead>
+				
+				</table>
+				<table class="table_2" style="margin-top: 30px; margin-bottom: 50px">
+				<thead>
+					<tr>
+						<th>Tax </th>
+                                                <th>HSN Code </th>
+                                                <th>Qty </th>
+                                                <th>Taxable </th>
+                                                <th>CGST </th>
+                                                <th>SGST</th>
+                                                <th>IGST</th>
+                                                <th>CESS</th>
+                                                <th>Tax Total</th>
+                                                <th>Addnl Amt </th>
+						<th>CD Amt </th>
+						<th>LC Amt </th>
+
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr style="border-bottom: 3px dotted green;">
+						<td>CGST/SGST 12%</td>
+						<td>630510</td>
+						<td>50</td>
+						<td>35,500.00</td>
+						<td>2130.00</td>
+						<td>2130.00</td>
+						<td>0.00</td>
+						<td>0.00</td>
+						<td>4260.00</td>
+						<td></td>
+						<td>0.00</td>
+						<td>39760.00</td>
+					</tr>
+
+					<tr>
+                                                <td>CGST/SGST 12%</td>
+                                                <td>630510</td>
+                                                <td>50</td>
+                                                <td>35,500.00</td>
+                                                <td>2130.00</td>
+                                                <td>2130.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>4260.00</td>
+                                                <td></td>
+                                                <td>0.00</td>
+                                                <td>39760.00</td>
+                                        </tr>
+
+					<tr style="border-bottom: 3px dotted green">
+                                                <td>CGST/SGST 12%</td>
+                                                <td>630510</td>
+                                                <td>50</td>
+                                                <td>35,500.00</td>
+                                                <td>2130.00</td>
+                                                <td>2130.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>4260.00</td>
+                                                <td></td>
+                                                <td>0.00</td>
+                                                <td>39760.00</td>
+                                        </tr>
+
+					
+                                        
+                                  </tbody>
+
+
+
+				</table>
+				
+				<br/><br/>
+				
+				<table class="table_1" style="border-bottom: 2px solid darkblue;padding: 10px;">
+				<thead>
+					<tr>
+						<th>N  </th>
+						<th>Code </th>
+						<th>Product   </th>
+						<th>Qty </th>
+						<th>Free </th>
+						<th>BCost</th>
+						<th>D amt </th>
+						<th>SDAm </th>
+						<th>TaxA</th>
+						<th>Tax </th>
+						<th>CDA </th>
+						<th>CHSS </th>
+						<th>LCost </th>
+						<th>PL cos </th>
+						<th>Sp% </th>
+						<th>MRP </th>
+						<th>PMRP</th>
+						<th>Margi</th>
+						<th>Total </th>
+						
+						
+						
+						
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>16051</td>
+						<td>420211</td>
+						<td>23</td>
+						<td>0</td>
+						<td>599.79</td>
+						
+						<td>934</td>
+						<td>24450</td>
+						<td>234</td>
+						<td>330</td>
+						<td>300</td>
+						<td>0.00</td>
+						<td>0.00</td>
+						<td>0.00</td>
+						<td>0.00</td>
+						<td>0.00</td>
+						<td>0.00</td>
+						<td>0.00</td>
+					</tr>
+
+					<tr>
+                                                <td>1</td>
+                                                <td>16051</td>
+                                                <td>420211</td>
+                                                <td>23</td>
+                                                <td>0</td>
+                                                <td>599.79</td>
+
+                                                <td>934</td>
+                                                <td>24450</td>
+                                                <td>234</td>
+                                                <td>330</td>
+                                                <td>300</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+
+                                        </tr>
+
+					<tr>
+                                                <td>1</td>
+                                                <td>16051</td>
+                                                <td>420211</td>
+                                                <td>23</td>
+                                                <td>0</td>
+                                                <td>599.79</td>
+
+                                                <td>934</td>
+                                                <td>24450</td>
+                                                <td>234</td>
+                                                <td>330</td>
+                                                <td>300</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+
+                                        </tr>
+
+
+				</tbody>
+			</table>
+			 <div class="oe_structure"/>
+			<div width="100%">
+			
+			<div style="margin-top: 30px;margin-bottom: 15px;font-size: 13px">
+				<b>Basic Amt : </b>
+				<span style="margin-right: 7px">49,295.1263</span>
+				<b>Disc Amt : </b>
+				<span style="margin-right: 7px">0.0</span>
+				<b>SD Amt : </b>
+				<span style="margin-right: 7px">0.0</span>
+				<b>Cross Amt : </b>
+				<span style="margin-right: 7px">49,295.13</span>
+				<b>Tax Amt : </b>
+				<span style="margin-right: 7px">6,743.12</span>
+				<b>CD Amt : </b>
+				<span style="margin-right: 7px">0.0</span>
+				<b>CHESS Amt : </b>
+				<span style="margin-right: 7px">0.0</span>
+				
+				
+			</div>
+			<div style="margin-bottom: 15px;font-size:13px;">
+			
+				<b>T.Payable : </b>
+				<span style="margin-right: 5px">56,038.00</span>
+				<b>Freight Charges: </b>
+				<span style="margin-right: 5px">0.0</span>
+				<b>TCS Amount: </b>
+				<span style="margin-right: 5px">0.0</span>
+				<b>Bill Disc Amt: </b>
+				<span style="margin-right: 5px">0.0</span>
+			</div>
+			
+			<h3 style="margin: 100px 10px">Remarks </h3>
+			
+			<div style="margin-top: 100px">
+				
+				<strong style="margin-right: 250px">ENTRY BY </strong>
+				<strong style="margin-right: 250px">VERIFIED BY </strong>
+				<strong style="margin-right: 5px">APPROVED BY </strong>
+			
+			
+	        </div>
+			</div>
+				
+				
+			</div>
+		</t>
+	</template>
+	
+	<record id="paper_format" model="report.paperformat">
+    <field name="name">Custom paper format</field>
+    <field name="default" eval="False"/>
+    <field name="disable_shrinking" eval="True"/>
+    <field name="format">A4</field>
+    <field name="page_height">0</field>
+    <field name="page_width">0</field>
+    <field name="orientation">Landscape</field>
+    <field name="margin_top">30</field>
+    <field name="margin_bottom">30</field>
+    <field name="margin_left">30</field>
+    <field name="margin_right">30</field>
+    <field name="dpi">96</field>
+</record>
+	
+	
+
+	<record id="pothys_template" model="ir.actions.report">
+		<field name="name">pothys report</field>
+		<field name="model">estate.property.fifteen</field>
+		<field name="report_type">qweb-pdf</field>
+		<field name="report_name">estate_property_fifteen.template</field>
+		<field name="report_file">estate_property_fifteen.template</field>
+		<field name="print_report_name">"Pothys Report"</field>
+		<field name="binding_model_id"
+			ref="model_estate_property_fifteen" />
+		<field name="binding_type">report</field>
+		<field name="paperformat_id" ref="estate_property_fifteen.paper_format" />
+	</record>
+	
+	
+	
+
+
 
 </odoo> 
 

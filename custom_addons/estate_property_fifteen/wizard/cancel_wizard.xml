@@ -5,7 +5,7 @@
 		<field name="model">cancel.model.wizard</field>
 		<field name="arch" type="xml">
 			<form string="">
-				<field name="reason" />
+				<field string="Cancel reason" name="reason" />
 				
 				<footer>
 					<button name="submit_wizard" type='object' string="submit" class="btn-primary" />
@@ -16,8 +16,9 @@
 	</record>
 	
 	
+	
 	<record id="cancel_wizard_action" model="ir.actions.act_window">
-		<field name="name">wizard action</field>
+		<field name="name">Cancel reason</field>
 		<field name="res_model">cancel.model.wizard</field>
 		<field name="view_mode">form</field>
 		<field name="view_id" ref="cancel_wizard_form" />

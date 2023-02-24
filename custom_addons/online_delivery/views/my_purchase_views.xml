@@ -1,0 +1,62 @@
+<odoo>
+
+	<record id="my_purchase_tree" model="ir.ui.view">
+		<field name="name">my.purchase.tree</field>
+		<field name="model">my.purchase</field>
+		<field name="arch" type="xml">
+			<tree string="purchase">
+				<field name="product_id" />
+				<field name="created_date" />
+				<field name="quantity" />
+				<field name="total_amt" />
+				<field name="status" />
+
+			</tree>
+		</field>
+	</record>
+
+
+	<record id="my_purchase_form" model="ir.ui.view">
+		<field name="name">my.purchase.form</field>
+		<field name="model">my.purchase</field>
+		<field name="arch" type="xml">
+			<form>
+				<header>
+					<button name="send" string="SEND" type="object"
+						attrs="{'invisible' : [('status','not in',['draft'])]}" />
+					<button name="confirm" string="CONFIRM" type="object"
+						attrs="{'invisible' : [('status','not in',['draft','sent'])]}" />
+					<button name="received_products" string="RECEIVED" type="object"
+						attrs="{'invisible' : [('status','in',['done'])]}" />
+					<field name="status" widget="statusbar"
+						statusbar_visible="draft,sent,confirm,done" />
+
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name="product_id" />
+							<field name="created_date" />
+						</group>
+						<group>
+							<field name="quantity" />
+							<field name="total_amt" />
+						</group>
+					</group>
+
+
+
+				</sheet>
+
+
+			</form>
+
+
+		</field>
+
+
+	</record>
+
+
+
+</odoo>

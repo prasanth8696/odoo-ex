@@ -1,0 +1,50 @@
+<odoo>
+		    <menuitem id="root_online_delivery" 
+		    name="custom Sale"
+		    />
+		    
+ 			<menuitem id="orders_parent" 
+ 			parent="root_online_delivery" 
+ 			sequence="10" 
+ 			name="orders"
+ 			/>
+ 			
+ 			<menuitem id="settings_root" 
+ 			name="settings" 
+ 			sequence="10"
+ 			parent="root_online_delivery"
+ 			/>
+ 			
+			<menuitem id="orders_child"
+			 parent="orders_parent" 
+			 name = "Orders" 
+			 action="orders_action"
+			 />
+			 
+			 <menuitem id="purchase_id"
+			 parent="orders_parent"
+			 name="Purchase"
+			 action="purchase_action"
+			 />
+			 
+			 <menuitem id="customers_id"
+			 parent="orders_parent"
+			 name="Customers" 
+			 action="customer_action"
+			 />
+			
+			<menuitem id="product_id"
+			 name="products" 
+			 parent="settings_root" 
+			 action="product_action"
+			 />
+			 
+			 <menuitem id="category_id"
+			 name="Categories" 
+			 parent="settings_root" 
+			 action="category_action"
+			 />
+			 
+			
+
+</odoo>

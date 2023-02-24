@@ -1,0 +1,52 @@
+<odoo>
+	<template id="index">
+
+
+		<t t-call="website.layout">
+			<t t-set="title">Estate properties</t>
+			<div class="oe_structure">
+				<div class="container">
+
+					<t t-foreach="properties" t-as="property">
+						<div>
+							<h2>
+								<strong>Title: </strong>
+								<span t-field="property.name" />
+							</h2>
+						</div>
+						<div>
+							<strong>Expected Price: </strong>
+							<span t-field="property.expected_price" />
+						</div>
+						<div t-if="property.status == 'offer received'">
+							<strong>Best Price: </strong>
+							<span t-field="property.best_offer" />
+						</div>
+						<div t-if="property.status in ('offer accepted','sold')">
+							<strong>Selling Price: </strong>
+							<span t-field="property.selling_price" />
+						</div>
+						<div>
+							<strong>Property Type: </strong>
+							<span t-field="property.property_type_id" />
+						</div>
+						<div>
+							<strong>Property status: </strong>
+							<span t-field="property.status" />
+						</div>
+						<div>
+							<t t-call="estate_property_fifteen.offer_table_template" />
+						</div>
+
+					</t>
+				</div>
+			</div>
+		</t>
+
+
+	</template>
+
+
+
+
+</odoo>

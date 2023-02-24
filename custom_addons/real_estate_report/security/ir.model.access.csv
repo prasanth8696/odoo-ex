@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_realestate_report,access.realestate.report,model_realestate_report,,1,1,1,0
+access_realestate_report_wzd,access.realestate.report.wzd,model_real_estate_report_wzd,,1,1,1,0
+access_realestate_line,access.realestate.line,model_real_estate_line,,1,1,1,0
+access_excel_extended_realestate_rep,access_excel_extended_realestate_rep,model_excel_extended_realestate_rep,,1,1,1,0

@@ -21,12 +21,20 @@
     <field name="name">for view the record</field>
     <field name="model_id" ref="model_estate_property_fifteen"/>
     <field name="perm_unlink" eval="False"/>
-    <field name="groups" eval="[Command.link(ref('estate_group_user'))]"/>
+    <field name="groups" eval="[(4, ref ('estate_group_user'))]"/>
     <field name="domain_force">[
         '|', ('sales_person', '=', user.id),
              ('sales_person', '=', False)
     ]</field>
 </record>
+
+<record id="view_manager_id" model="ir.rule">
+    <field name="name">for view the record</field>
+    <field name="model_id" ref="model_estate_property_fifteen"/>
+    <field name="groups" eval="[(4, ref ('estate_group_manager'))]"/>
+    <field name="domain_force">[(1,'=',1)]</field>
+</record>
+
 
 
 
